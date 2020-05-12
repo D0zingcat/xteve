@@ -1,4 +1,4 @@
-# xteve
+# xteve for arm64v8(aarch64)
 xteve, in docker with cron
 
 docker runs in host mode \

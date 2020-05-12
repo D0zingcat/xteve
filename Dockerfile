@@ -1,9 +1,10 @@
-FROM alpine:latest
+FROM arm64v8/alpine
 RUN apk update
 RUN apk upgrade
 RUN apk add --no-cache ca-certificates
 
-MAINTAINER alturismo alturismo@gmail.com
+# forked from https://github.com/alturismo/xteve
+MAINTAINER d0zingcat asong4love@gmail.com
 
 # Extras
 RUN apk add --no-cache curl
@@ -27,7 +28,7 @@ RUN apk add vlc
 RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
 
 # Add xTeve and guide2go
-RUN wget https://github.com/xteve-project/xTeVe-Downloads/raw/master/xteve_linux_amd64.zip -O temp.zip; unzip temp.zip -d /usr/bin/; rm temp.zip
+COPY xteve /usr/bin/
 ADD cronjob.sh /
 ADD entrypoint.sh /
 ADD sample_cron.txt /
